@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     resources :users, only:[:show, :edit, :update]
+    resources :menus, only:[:new, :create, :show, :index, :edit, :update, :destroy]
   #退会確認ページ
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   #退会保存する
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :users, only:[:index, :show, :edit, :update]
+    resources :genres, only:[:index, :create, :edit, :update, :destroy]
   end
 
 end
