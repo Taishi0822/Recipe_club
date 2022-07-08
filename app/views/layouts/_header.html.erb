@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+ <%= link_to root_path do %>ごはん日記<% end %>
+ <%= link_to menus_path do %>メニュー一覧<% end %>
+ <%= link_to user_path(current_user.id) do %>マイページ<% end %>
+ <%= link_to destroy_user_session_path, method: :delete do %>ログアウト<% end %>
+<% elsif admin_signed_in? %>
+ <%= link_to root_path do %>ごはん日記<% end %>
+ <%= link_to admin_users_path do %>会員一覧<% end %>
+ <%= link_to admin_genres_path do %>ジャンル一覧<% end %>
+ <%= link_to destroy_admin_session_path, method: :delete do %>ログアウト<% end %>
+<% else %>
+ <%= link_to root_path do %>ごはん日記<% end %>
+ メニュー一覧
+ <%= link_to new_user_registration_path do %>新規登録<% end %>
+ <%= link_to user_session_path do %>ログイン<% end %>
+ <%= link_to new_admin_session_path do %>管理者ログイン<% end %>
+<% end %>
