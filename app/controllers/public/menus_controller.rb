@@ -5,16 +5,25 @@ class Public::MenusController < ApplicationController
   end
 
   def create
-    
+    @menu = Menu.new(menus_params)
+    @menu.user_id = current_user.id
+    if @menu.save
+     redirect_to menus_path
+    else
+     render 'new'
+    end
   end
 
   def index
+    @menus = Menu.all
   end
 
   def show
+    @menu = Menu.find(params[:id])
   end
 
   def edit
+    @menu = Menu.find(params[:id])
   end
 
   def update
@@ -26,7 +35,7 @@ class Public::MenusController < ApplicationController
   private
 
   def menus_params
-    params.require(:menus).permit(:name, :explanation, :user_id, :genre_id)
+    params.permit(:image, :name, :explanation, :user_id, :genre_id)
   end
 
 

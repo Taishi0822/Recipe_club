@@ -1,0 +1,17 @@
+<h3>材料</h3>
+<%= form_with model: @material, url: materials_path do |f| %>
+<table>
+  <tr>
+    <th>材料名</th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th>計量</th>
+    <td><%= f.text_field :weigh %></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td><%= f.submit "追加する" %></td>
+  </tr>
+</table>
+<% end %>

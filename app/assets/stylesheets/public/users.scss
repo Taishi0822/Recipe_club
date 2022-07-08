@@ -1,3 +1,38 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+//新規登録
+
+.main-title{
+  text-align: center;
+  padding: 50px 0;
+}
+
+.table-box{
+  margin: 0 auto;
+}
+
+.sign{
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text-box{
+  padding-right: 100px;
+}
+
+input.sign{
+  width: 250px;
+  margin: 10px 0;
+}
+
+input.sign-up-submit{
+  width: 300px;
+  margin: 20px 0;
+}
+
+.sign-up-submit{
+  margin: 0 auto;
+}
