@@ -22,6 +22,6 @@ class Public::MaterialsController < ApplicationController
 
   private
   def materials_params
-    params.require(:material).permit(:name, :weigh, :menu_id)
+    params.require(:material).permit(:name, :weigh)
   end
 end

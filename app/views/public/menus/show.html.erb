@@ -1,1 +1,23 @@
 <h3>メニュー詳細</h3>
+<div>
+  <% if @menu.user.profile_image.attached? %>
+   <%= image_tag @menu.user.profile_image, size: "150x150" %>
+  <% else %>
+   <%= image_tag 'no-image', size: "150x150" %>
+  <% end %>
+  <%= @menu.user.name %>
+</div>
+<div>
+  <%= @menu.name %>
+  <%= @menu.genre.name %>
+  <%= @menu.explanation %>
+</div>
+<div>
+  <%#= @menu.materials.name %>
+  <%#= @menu.materials.weigh %>
+</div>
+
+<% if @menu.user_id == current_user.id %>
+ <%= link_to "編集", edit_menu_path(@menu) %>
+ <%= link_to "削除する", menu_path(@menu), method: :delete %>
+<% end %>
