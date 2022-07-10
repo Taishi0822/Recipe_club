@@ -13,8 +13,10 @@
   <%= @menu.explanation %>
 </div>
 <div>
-  <%#= @menu.materials.name %>
-  <%#= @menu.materials.weigh %>
+  <% @menu.materials.each do |materials| %>
+   <%= materials.name %>
+   <%= materials.weigh %>
+  <% end %>
 </div>
 
 <% if @menu.user_id == current_user.id %>

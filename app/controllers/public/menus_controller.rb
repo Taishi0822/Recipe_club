@@ -3,7 +3,7 @@ class Public::MenusController < ApplicationController
   def new
     @menu = Menu.new
     @materials = @menu.materials.build
-    @cooks = @menu.coo
+    @cooks = @menu.cooks.build
 
   end
 

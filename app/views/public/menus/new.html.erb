@@ -1,5 +1,5 @@
 <h3>新規投稿</h3>
-     <%= form_with model: @menu, url: menus_path do |f| %>
+<%= form_with model: @menu, url: menus_path do |f| %>
  <table>
         <tr>
             <th>メニュー画像</th>
@@ -22,29 +22,40 @@
  <table>
      <p>材料</p>
      <div class="menu-materials">
-     <%= f.fields_for :materials do |materials_fields| %>
-        <%= render "material_fields", f: materials_fields %>
-      <% end %>
+       <%= f.fields_for :materials do |materials_fields| %>
+         <%= render "material_fields", f: materials_fields %>
+       <% end %>
      </div>
 
-     <div id="detail-association-insertion-point"></div>
+     <div id="detail-association-materials"></div>
 
      <div>
          <%= link_to_add_association "+材料を追加", f, :materials,
         class: "btn btn-secondary btn-block",
         data: {
-        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_node: '#detail-association-materials',
         association_insertion_method: 'after'
         }%>
      </div>
 
      <p>作り方</p>
      <div>
-    　 <div class="menu-cooks">
+       <div class="menu-cooks">
         <%= f.fields_for :cooks do |cooks_fields| %>
           <%= render "cook_fields", f: cooks_fields %>
         <% end %>
        </div>
+
+       <div id="detail-association-insertion-point"></div>
+
+       <div>
+         <%= link_to_add_association "+作り方を追加", f, :cooks,
+        class: "btn btn-secondary btn-block",
+        data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'after'
+        }%>
+       </div>
      </div>
  </table>
-     <% end %>
+<% end %>
