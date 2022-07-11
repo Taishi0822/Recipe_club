@@ -10,8 +10,7 @@ class Public::MenusController < ApplicationController
   def create
     @menu = Menu.new(menus_params)
     @menu.user_id = current_user.id
-    Rails.logger.debug(@menu.attributes)
-    if @menu.save!
+    if @menu.save
      redirect_to menus_path
     else
      render 'new'
@@ -31,6 +30,9 @@ class Public::MenusController < ApplicationController
   end
 
   def update
+    @menu = Menu.find(params[:id])
+    @menu.update(menus_params)
+    redirect_to menu_path(@menu)
   end
 
   def destroy
@@ -42,8 +44,9 @@ class Public::MenusController < ApplicationController
   private
 
   def menus_params
-    params.require(:menu).permit(:image, :name, :explanation, :user_id, :genre_id, materials_attributes: [:name, :weigh, :_destroy
-    ], cooks_attributes: [:cooks_count, :cook_image, :_destroy])
+    params.require(:menu).permit(:image, :name, :explanation, :user_id, :genre_id,
+    materials_attributes: [:id, :name, :weigh, :_destroy],
+    cooks_attributes: [:id, :cooks_count, :text, :cook_image, :_destroy])
   end
 
 

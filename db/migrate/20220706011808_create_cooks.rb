@@ -3,7 +3,7 @@ class CreateCooks < ActiveRecord::Migration[6.1]
     create_table :cooks do |t|
       t.integer :menu_id, null: false
       t.integer :cooks_count, null: false
-      t.text :text, null: 
+      t.text :text, null: false
 
       t.timestamps
     end

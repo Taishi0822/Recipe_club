@@ -18,7 +18,19 @@
     <td><%= @user.email %></td>
   </tr>
 </table>
-
-<%= link_to '編集', edit_user_path(current_user.id) %>
-
+<% if current_user.id == @user.id %>
+  <%= link_to '編集', edit_user_path(current_user.id) %>
+<% end %>
+<% @user.menus.each do |menu| %>
+<table>
+  <td>
+    <% if menu.image.attached? %>
+     <%= image_tag menu.image, size: "150x150" %>
+    <% else %>
+     <%= image_tag 'no-image', size: "150x150" %>
+    <% end %>
+  </td>
+  <td><%= menu.name %></td>
+</table>
+<% end %>
 

@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(version: 2022_07_06_012200) do
   create_table "cooks", force: :cascade do |t|
     t.integer "menu_id", null: false
     t.integer "cooks_count", null: false
+    t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "text"
   end
 
   create_table "favorites", force: :cascade do |t|
