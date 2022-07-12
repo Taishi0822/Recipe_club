@@ -24,10 +24,12 @@
 <% @user.menus.each do |menu| %>
 <table>
   <td>
-    <% if menu.image.attached? %>
-     <%= image_tag menu.image, size: "150x150" %>
-    <% else %>
-     <%= image_tag 'no-image', size: "150x150" %>
+    <%= link_to menu_path(menu) do %>
+      <% if menu.image.attached? %>
+       <%= image_tag menu.image, size: "150x150" %>
+      <% else %>
+       <%= image_tag 'no-image', size: "150x150" %>
+      <% end %>
     <% end %>
   </td>
   <td><%= menu.name %></td>
