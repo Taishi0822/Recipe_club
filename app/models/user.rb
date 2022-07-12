@@ -6,6 +6,8 @@ class User < ApplicationRecord
   # アソシエーション
   has_one_attached :profile_image
   has_many :menus, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :checks, dependent: :destroy
 
 
   def active_for_authentication?

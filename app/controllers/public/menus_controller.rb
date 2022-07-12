@@ -1,5 +1,4 @@
 class Public::MenusController < ApplicationController
-  before_action :authenticate_user!
 
   def new
     @menu = Menu.new
@@ -32,8 +31,11 @@ class Public::MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    @menu.update(menus_params)
-    redirect_to menu_path(@menu)
+    if @menu.update(menus_params)
+      redirect_to menu_path(@menu)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -49,6 +51,5 @@ class Public::MenusController < ApplicationController
     materials_attributes: [:id, :name, :weigh, :_destroy],
     cooks_attributes: [:id, :cooks_count, :text, :cook_image, :_destroy])
   end
-
 
 end
