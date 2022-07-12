@@ -9,7 +9,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    resources :users, only:[:show, :edit, :update]
+    resources :users, only:[:show, :edit, :update] do
+     member do
+       get :favorites
+       get :checks
+     end
+    end
     resources :menus, only:[:new, :create, :show, :index, :edit, :update, :destroy] do
       resource :favorites, only:[:create, :destroy]
       resource :checks, only:[:create, :destroy]
