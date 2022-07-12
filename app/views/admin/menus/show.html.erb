@@ -1,0 +1,52 @@
+<h3>メニュー詳細</h3>
+
+<table>
+ <tr>
+  メニューの制作者
+ </tr>
+ <tr>
+  <td>
+   <%= link_to admin_user_path(@menu.user) do %>
+    <% if @menu.user.profile_image.attached? %>
+     <%= image_tag @menu.user.profile_image, size: "150x150" %>
+    <% else %>
+     <%= image_tag 'no-image', size: "150x150" %>
+    <% end %>
+   <% end %>
+  </td>
+  <td><%= @menu.user.name %></td>
+ </tr>
+</table>
+
+
+<div>
+  <% if @menu.image.attached? %>
+   <%= image_tag @menu.image, size: "150x150" %>
+  <% else %>
+   <%= image_tag 'no-image', size: "150x150" %>
+  <% end %>
+</div>
+<div>
+  <%= @menu.name %>
+  <%= @menu.genre.name %>
+  <%= @menu.explanation %>
+</div>
+<div>
+  <% @menu.materials.each do |materials| %>
+   <%= materials.name %>
+   <%= materials.weigh %>
+  <% end %>
+</div>
+<div>
+  <% @menu.cooks.each do |cooks| %>
+   <%= cooks.cooks_count %>
+   <% if cooks.cook_image.attached? %>
+    <%= image_tag cooks.cook_image, size: "150x150" %>
+   <% else %>
+    <%= image_tag 'no-image', size: "150x150" %>
+   <% end %>
+    <%= cooks.text %><br
+   <% end %>
+</div>
+ <%= link_to "編集", edit_admin_menu_path(@menu) %>
+ <%= link_to "削除する", admin_menu_path(@menu), method: :delete %>

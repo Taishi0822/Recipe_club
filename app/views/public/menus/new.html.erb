@@ -1,1 +1,61 @@
 <h3>新規投稿</h3>
+<%= form_with model: @menu, url: menus_path do |f| %>
+ <table>
+        <tr>
+            <th>メニュー画像</th>
+            <th>メニュー名</th>
+            <th>ジャンル</th>
+        </tr>
+        <tr>
+            <td><%= f.file_field :image, placeholder: "メニュー画像", accept: "image/*" %></td>
+            <td><%= f.text_field :name %></td>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+        </tr>
+        <tr>
+            <td>メニュー説明</td>
+            <td><%= f.text_area :explanation %></td>
+        </tr>
+        <tr>
+            <td><%= f.submit "投稿保存" %></td>
+        </tr>
+ </table>
+ <table>
+     <p>材料</p>
+     <div class="menu-materials">
+       <%= f.fields_for :materials do |materials_fields| %>
+         <%= render "material_fields", f: materials_fields %>
+       <% end %>
+     </div>
+
+     <div id="detail-association-insertion-materials"></div>
+
+     <div>
+         <%= link_to_add_association "+材料を追加", f, :materials,
+        class: "btn btn-secondary btn-block",
+        data: {
+        association_insertion_node: '#detail-association-insertion-materials',
+        association_insertion_method: 'after'
+        }%>
+     </div>
+
+     <p>作り方</p>
+     <div>
+       <div class="menu-cooks">
+        <%= f.fields_for :cooks do |cooks_fields| %>
+          <%= render "cook_fields", f: cooks_fields %>
+        <% end %>
+       </div>
+
+       <div id="detail-association-insertion-point"></div>
+
+       <div>
+         <%= link_to_add_association "+作り方を追加", f, :cooks,
+        class: "btn btn-secondary btn-block",
+        data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'after'
+        }%>
+       </div>
+     </div>
+ </table>
+<% end %>

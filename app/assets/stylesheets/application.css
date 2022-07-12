@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ /*全体のレイアウト*/
+main{
+  margin: 0 100px;
+}
