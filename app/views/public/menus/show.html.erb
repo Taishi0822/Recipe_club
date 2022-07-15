@@ -38,7 +38,7 @@
   </div>
   <% if @menu.user_id == current_user.id %>
    <%= link_to "編集", edit_menu_path(@menu) %>
-   <%= link_to "削除する", menu_path(@menu), method: :delete %>
+   <%= link_to "削除する", menu_path(@menu), method: :delete, data: {confirm: "本当に削除しますか？"} %>
   <% end %>
 </div>
 <p>材料</p>

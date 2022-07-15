@@ -17,7 +17,8 @@
   <td><%= @menu.user.name %></td>
  </tr>
 </table>
-
+ <%= link_to "編集", edit_admin_menu_path(@menu) %>
+ <%= link_to "削除する", admin_menu_path(@menu), method: :delete, data: {confirm: "本当に削除しますか？"} %>
 
 <div>
   <% if @menu.image.attached? %>
@@ -31,25 +32,32 @@
   <%= @menu.genre.name %>
   <%= @menu.explanation %>
 </div>
+<p>材料</p>
 <div>
   <% @menu.materials.each do |materials| %>
    <%= materials.name %>
    <%= materials.weigh %>
   <% end %>
 </div>
-<div>
-  <% @menu.cooks.each do |cooks| %>
-   <%= cooks.cooks_count %>
+<table>
+ <p>作り方</p>
+ <tr>
+  <th>順番</th>
+ </tr>
+ <% @menu.cooks.each do |cooks| %>
+ <tr>
+  <td><%= cooks.cooks_count %></td>
+  <td>
    <% if cooks.cook_image.attached? %>
     <%= image_tag cooks.cook_image, size: "150x150" %>
    <% else %>
     <%= image_tag 'no-image', size: "150x150" %>
    <% end %>
-    <%= cooks.text %><br
-   <% end %>
-</div>
- <%= link_to "編集", edit_admin_menu_path(@menu) %>
- <%= link_to "削除する", admin_menu_path(@menu), method: :delete %>
+  </td>
+  <td><%= cooks.text %><br></td>
+ </tr>
+ <% end %>
+</table>
  <% if admin_signed_in? %>
  <div id="comment_area">
   <%= render 'admin/comments/menu_comment', menu: @menu %>

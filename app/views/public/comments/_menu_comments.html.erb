@@ -1,7 +1,7 @@
 <% if menu.comments.present? %>
   <p>コメント件数：<%= menu.comments.count %></p>
   <% menu.comments.each do |comment| %>
-    <%= link_to admin_user_path(comment.user) do %>
+    <%= link_to user_path(comment.user) do %>
       <% if comment.user.profile_image.attached? %>
        <%= image_tag comment.user.profile_image, size: "150x150" %>
       <% else %>
