@@ -18,6 +18,17 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_user_path(@user)
   end
 
+  #退会機能
+  def unsubscribe
+    @user = User.find(params[:id])
+  end
+
+  def withrawal
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    redirect_to admin_root_path
+  end
+
   private
 
   def admin_user_params

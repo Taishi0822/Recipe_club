@@ -41,7 +41,10 @@ Rails.application.routes.draw do
       resources :comments, only:[:destroy]
     end
     resources :genres, only:[:index, :create, :edit, :update, :destroy]
-  
+  #退会確認ページ
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  #退会保存する
+    patch '/users/:id/withrawal' => 'users#withrawal', as: 'withrawal'
   end
 
 end

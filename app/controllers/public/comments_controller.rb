@@ -5,7 +5,7 @@ class Public::CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.menu_id = @menu.id
     if @comment.save
-      render :create
+      render :menu_comment
     else
       render :error
     end
@@ -15,7 +15,7 @@ class Public::CommentsController < ApplicationController
     @menu = Menu.find(params[:menu_id])
     @comment = Comment.find_by(id: params[:id], menu_id: params[:menu_id])
     @comment.destroy
-    render :create
+    render :menu_comment
   end
 
   private
