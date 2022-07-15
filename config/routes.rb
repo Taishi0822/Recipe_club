@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    get "search" => "searches#search"
     resources :users, only:[:show, :edit, :update] do
      member do
        get :favorites
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     resources :menus, only:[:new, :create, :show, :index, :edit, :update, :destroy] do
       resource :favorites, only:[:create, :destroy]
       resource :checks, only:[:create, :destroy]
+      resources :comments, only:[:create, :destroy]
     end
   #退会確認ページ
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
@@ -33,10 +35,21 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only:[:index, :show, :edit, :update]
-    resources :menus, only:[:index, :show, :edit, :update, :destroy]
+    get "search" => "searches#search"
+    resources :users, only:[:index, :show, :edit, :update] do
+      member do
+        get :favorites
+        get :checks
+      end
+    end
+    resources :menus, only:[:index, :show, :edit, :update, :destroy] do
+      resources :comments, only:[:destroy]
+    end
     resources :genres, only:[:index, :create, :edit, :update, :destroy]
-
+  #退会確認ページ
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  #退会保存する
+    patch '/users/:id/withrawal' => 'users#withrawal', as: 'withrawal'
   end
 
 end

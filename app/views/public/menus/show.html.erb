@@ -38,7 +38,7 @@
   </div>
   <% if @menu.user_id == current_user.id %>
    <%= link_to "編集", edit_menu_path(@menu) %>
-   <%= link_to "削除する", menu_path(@menu), method: :delete %>
+   <%= link_to "削除する", menu_path(@menu), method: :delete, data: {confirm: "本当に削除しますか？"} %>
   <% end %>
 </div>
 <p>材料</p>
@@ -67,3 +67,9 @@
  </tr>
  <% end %>
 </table>
+<div id="comment_area">
+ <%= render 'public/comments/menu_comments', menu: @menu %>
+</div>
+<div class="new-comment">
+ <%= render 'public/comments/form', menu: @menu, comment: @comment %>
+</div>

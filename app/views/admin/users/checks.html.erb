@@ -1,0 +1,23 @@
+<h2>作った一覧</h2>
+<% @checks_menu.each do |checks| %>
+<table>
+    <thead>
+        <th></th>
+        <th>メニュー名</th>
+        <th>メニュー説明</th>
+    </thead>
+    <tbody>
+        <td>
+         <%= link_to admin_menu_path(checks) do %>
+            <% if checks.image.attached? %>
+             <%= image_tag checks.image, size: "150x150" %>
+            <% else %>
+             <%= image_tag 'no-image', size: "150x150" %>
+            <% end %>
+         <% end %>
+        </td>
+        <td><%= checks.name %></td>
+        <td><%= checks.explanation %></td>
+    </tbody>
+</table>
+<% end %>

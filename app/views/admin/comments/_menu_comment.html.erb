@@ -1,0 +1,21 @@
+<% if menu.comments.present? %>
+  <p>コメント件数：<%= menu.comments.count %></p>
+  <% menu.comments.each do |comment| %>
+    <%= link_to admin_user_path(comment.user) do %>
+      <% if comment.user.profile_image.attached? %>
+       <%= image_tag comment.user.profile_image, size: "150x150" %>
+      <% else %>
+       <%= image_tag 'no-image', size: "150x150" %>
+      <% end %>
+    <% end %>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <% if admin_id = current_admin.id %>
+      <div class="comment-delete">
+        <%= link_to "削除", admin_menu_comment_path(comment.menu, comment), method: :delete, data: {confirm: "本当に削除しますか？"},remote:true %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>コメントはまだありません</p>
+<% end %>

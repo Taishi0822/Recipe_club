@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :menus, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :checks, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 
   def active_for_authentication?

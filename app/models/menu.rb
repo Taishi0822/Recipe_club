@@ -9,6 +9,7 @@ class Menu < ApplicationRecord
  has_many :materials, dependent: :destroy
  has_many :favorites, dependent: :destroy
  has_many :checks, dependent: :destroy
+ has_many :comments, dependent: :destroy
 
  # 引数で渡されたユーザーIDがCheckテーブル内に存在するか確認
  def checked_by?(user)
@@ -19,6 +20,21 @@ class Menu < ApplicationRecord
  def favorited_by?(user)
     favorites.exists?(user_id: user.id)
  end
+
+ # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @menu = Menu.where("name LIKE?","#{word}")
+    elsif search == "forward_match"
+      @menu = Menu.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @menu = Menu.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @menu = Menu.where("name LIKE?","%#{word}%")
+    else
+      @menu = Menu.all
+    end
+  end
 
  # reject_ifは、入力フォームを追加しているもののすべてが空白の場合にリジェクトする
  # allow_destroyは、入力フォームでこのオブジェクトが削除された際に削除を許可する
