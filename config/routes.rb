@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    get "search" => "searches#search"
     resources :users, only:[:show, :edit, :update] do
      member do
        get :favorites
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     resources :menus, only:[:new, :create, :show, :index, :edit, :update, :destroy] do
       resource :favorites, only:[:create, :destroy]
       resource :checks, only:[:create, :destroy]
+      resources :comments, only:[:create, :destroy]
     end
   #退会確認ページ
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
