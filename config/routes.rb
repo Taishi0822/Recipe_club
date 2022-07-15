@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
+    get "search" => "searches#search"
     resources :users, only:[:index, :show, :edit, :update]
     resources :menus, only:[:index, :show, :edit, :update, :destroy]
     resources :genres, only:[:index, :create, :edit, :update, :destroy]
