@@ -37,9 +37,11 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get "search" => "searches#search"
     resources :users, only:[:index, :show, :edit, :update]
-    resources :menus, only:[:index, :show, :edit, :update, :destroy]
+    resources :menus, only:[:index, :show, :edit, :update, :destroy] do
+      resources :comments, only:[:destroy]
+    end
     resources :genres, only:[:index, :create, :edit, :update, :destroy]
-
+  
   end
 
 end

@@ -50,3 +50,9 @@
 </div>
  <%= link_to "編集", edit_admin_menu_path(@menu) %>
  <%= link_to "削除する", admin_menu_path(@menu), method: :delete %>
+ <% if admin_signed_in? %>
+ <div id="comment_area">
+  <%= render 'admin/comments/menu_comment', menu: @menu %>
+ </div>
+
+ <% end %>
