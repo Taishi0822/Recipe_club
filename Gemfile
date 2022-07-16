@@ -60,5 +60,6 @@ gem 'simple_calendar', '~> 2.0'
 
 gem 'cocoon'
 gem "jquery-rails"
+gem 'rename'
 
 gem 'pry-rails'
