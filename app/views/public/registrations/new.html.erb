@@ -1,0 +1,35 @@
+<h2 class="main-title">新規登録</h2>
+<div class="sign">
+  <%= form_with model: @user, url: user_registration_path do |f| %>
+  <%= render "public/shared/error_messages", resource: resource %>
+  <table class="table-box">
+    <tr>
+      <th class="text-box"><%= f.label :ニックネーム, class: 'text-title' %></th>
+      <td><%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'sign-up' %></td>
+    </tr>
+    <tr>
+      <th class="text-box"><%= f.label :メールアドレス, class: 'text_title' %></th>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'sign-up' %></td>
+    </tr>
+    <tr>
+      <th class="text-box">
+        <%= f.label :パスワード %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+      </th>
+      <td>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'sign-up' %>
+      </td>
+    </tr>
+    <tr>
+      <th class="text-box"><%= f.label :パスワード（確認用）, class: 'text-title' %></th>
+      <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'sign-up' %></td>
+    </tr>
+  </table>
+   <%= f.submit "新規登録", class: 'sign-up-submit btn btn-warning' %>
+  <% end %>
+
+  <%= render "public/shared/links" %>
+</div>
+
