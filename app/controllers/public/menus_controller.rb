@@ -1,4 +1,5 @@
 class Public::MenusController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
 
   def new
     @menu = Menu.new
@@ -23,6 +24,7 @@ class Public::MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
+    @cooks = Cook.order(cooks_count: :ASC)
     @comment = Comment.new
   end
 

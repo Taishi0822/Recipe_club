@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 <!--会員ログイン-->
- <%= link_to root_path do %>ごはん日記<% end %>
+ <%= link_to root_path do %>レシピクラブ<% end %>
  ようこそ<%= current_user.name %>さん
  <%= link_to menus_path do %>メニュー一覧<% end %>
  <%= link_to user_path(current_user.id) do %>マイページ<% end %>
