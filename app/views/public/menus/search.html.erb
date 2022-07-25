@@ -1,13 +1,12 @@
 <%= render 'public/menus/genre_search', genres: @genres %>
-<table class="table table-hover table-inverse">
 <div class="menu-index">
-  <% @menus.each do |menus| %>
+  <% @genre.menus.each do |menus| %>
     <div class="menu-box">
       <%= link_to menu_path(menus) do %>
         <% if menus.image.attached? %>
-          <%= image_tag menus.image, size: "250x250", class: "menu-image" %><br>
+          <%= image_tag menus.image, size: "250x250", class: "menu-image" %>
         <% else %>
-          <%= image_tag 'no-image', size: "250x250", class: "menu-image" %><br>
+          <%= image_tag 'no-image', size: "250x250", class: "menu-image" %>
         <% end %>
       <% end %>
       <div class="menu-index-name"><h5><%= menus.name %></h5></div>

@@ -5,7 +5,6 @@ class Public::MenusController < ApplicationController
     @menu = Menu.new
     @materials = @menu.materials.build
     @cooks = @menu.cooks.build
-
   end
 
   def create
@@ -20,12 +19,15 @@ class Public::MenusController < ApplicationController
 
   def index
     @menus = Menu.all
+    @genres = Genre.all
   end
 
   def show
     @menu = Menu.find(params[:id])
-    @cooks = Cook.order(cooks_count: :ASC)
+    cooks = Cook.where(menu_id: @menu.id)
+    @cooks = cooks.order(cooks_count: :ASC)
     @comment = Comment.new
+    @genres = Genre.all
   end
 
   def edit
@@ -45,6 +47,11 @@ class Public::MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     @menu.destroy
     redirect_to user_path(current_user.id)
+  end
+
+  def search
+    @genre = Genre.find(params[:format])
+    @genres = Genre.all
   end
 
   private

@@ -27,17 +27,7 @@ class Menu < ApplicationRecord
 
  # 検索方法分岐
   def self.looks(search, word)
-    if search == "perfect_match"
-      @menu = Menu.where("name LIKE?","#{word}")
-    elsif search == "forward_match"
-      @menu = Menu.where("name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @menu = Menu.where("name LIKE?","%#{word}")
-    elsif search == "partial_match"
       @menu = Menu.where("name LIKE?","%#{word}%")
-    else
-      @menu = Menu.all
-    end
   end
 
 end

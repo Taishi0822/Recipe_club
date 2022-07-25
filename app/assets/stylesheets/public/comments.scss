@@ -1,3 +1,29 @@
 // Place all the styles related to the public/comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.comment-index{
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-box{
+  display: block;
+  width: 300px;
+  margin: 0 10px;
+  //border
+  padding: 0.5em 1em;
+  font-weight: bold;
+  background: #FFF;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+}
+
+.comment-area{
+  display: flex;
+}
+
+.comment-day{
+  color: #93918f;
+  font-size: 15px;
+}

@@ -1,27 +1,27 @@
-<h2>会員一覧</h2>
+<h3 class="title-text">会員一覧</h3>
  <% @users.each do |users| %>
-  <table>
+  <table class="admin-users">
     <thead>
       <tr>
-        <th>プロフィール画像</th>
-        <th>名前</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
+        <th class="user-header">プロフィール画像</th>
+        <th class="user-header">名前</th>
+        <th class="user-header">メールアドレス</th>
+        <th class="user-header">ステータス</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>
+      <tr class="user-table">
+        <td class="user-image">
           <%= link_to admin_user_path(users) do %>
             <% if users.profile_image.attached? %>
-             <%= image_tag users.profile_image, size: "150x150" %>
+             <%= image_tag users.profile_image, size: "100x100" %>
             <% else%>
-             <%= image_tag 'no-image', size: "150x150" %>
+             <%= image_tag 'no-image', size: "100x100" %>
             <% end %>
         </td>
-        <td><%= users.name %></td>
-        <td><%= users.email %></td>
-        <td>
+        <td class="user-name"><%= users.name %></td>
+        <td class="user-email"><%= users.email %></td>
+        <td class="user-stetus">
           <% if users.is_deleted == false %>
            有効
           <% else %>

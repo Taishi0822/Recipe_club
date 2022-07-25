@@ -1,25 +1,17 @@
-<h2>メニュー一覧</h2>
+<%= render 'public/menus/genre_search', genres: @genres %>
 <%= link_to "新規投稿", new_menu_path %>
-<% @menus.each do |menus| %>
-<table>
-    <thead>
-        <th></th>
-        <th>メニュー名</th>
-        <th>メニュー説明</th>
-    </thead>
-    <tbody>
-        <td>
-         <%= link_to menu_path(menus) do %>
-            <% if menus.image.attached? %>
-             <%= image_tag menus.image, size: "150x150" %>
-            <% else %>
-             <%= image_tag 'no-image', size: "150x150" %>
-            <% end %>
-         <% end %>
-        </td>
-        <td><%= menus.name %></td>
-        <td><%= menus.explanation %></td>
-    </tbody>
-
-</table>
-<% end %>
+<div class="menu-index">
+  <% @menus.each do |menus| %>
+    <div class="menu-box">
+      <%= link_to menu_path(menus) do %>
+        <% if menus.image.attached? %>
+          <%= image_tag menus.image, size: "250x250", class: "menu-image" %><br>
+        <% else %>
+          <%= image_tag 'no-image', size: "250x250", class: "menu-image" %><br>
+        <% end %>
+      <% end %>
+      <div class="menu-index-name"><h5><%= menus.name %></h5></div>
+      <div class="menu-index-explanation"><%= menus.explanation %></div>
+    </div>
+  <% end %>
+</div>

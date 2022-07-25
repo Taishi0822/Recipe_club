@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get "search" => "searches#search"
+    get "genre_search" => "menus#search"
     resources :users, only:[:show, :edit, :update] do
      member do
        get :favorites

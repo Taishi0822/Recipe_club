@@ -2,7 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-//新規登録
+//会員
+///新規登録
 
 .main-title{
   text-align: center;
@@ -35,4 +36,36 @@ input.sign-up-submit{
 
 .sign-up-submit{
   margin: 0 auto;
+}
+
+//マイページ
+.profile_image{
+  border-radius:50%;
+}
+
+//管理者
+///会員一覧
+//バックkara-
+#C9E265
+
+.title-text{
+  text-align: center;
+}
+
+.admin-users{
+  width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.user-header{
+  padding: 20px 10px;
+}
+
+.user-table{
+  text-align: center;
+}
+
+.user-image{
+  max-width: 100px;
 }

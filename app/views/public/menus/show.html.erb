@@ -1,34 +1,17 @@
-<h3>メニュー詳細</h3>
-
-<table>
- <tr>
-  メニューの制作者
- </tr>
- <tr>
-  <td>
-   <%= link_to user_path(@menu.user) do %>
-    <% if @menu.user.profile_image.attached? %>
-     <%= image_tag @menu.user.profile_image, size: "150x150" %>
-    <% else %>
-     <%= image_tag 'no-image', size: "150x150" %>
-    <% end %>
-   <% end %>
-  </td>
-  <td><%= @menu.user.name %></td>
- </tr>
-</table>
-
-<div>
-  <% if @menu.image.attached? %>
-   <%= image_tag @menu.image, size: "150x150" %>
-  <% else %>
-   <%= image_tag 'no-image', size: "150x150" %>
+<div class="menu-show-top">
+ <div class="menu-show">
+  <%= link_to genre_search_path(@genres.ids) do %>
+    <%= @menu.genre.name %><br>
   <% end %>
-</div>
-<div>
-  <%= @menu.name %>
-  <%= @menu.genre.name %>
+  <% if @menu.image.attached? %>
+   <%= image_tag @menu.image, size: "300x300", class: "menu-image" %><br>
+  <% else %>
+   <%= image_tag 'no-image', size: "300x300", class: "menu-image" %><br>
+  <% end %>
+  <h3><%= @menu.name %></h3>
+  <h4>メニュー説明</h4>
   <%= @menu.explanation %>
+
   <div class="favorites_buttons_<%= @menu.id %>">
    <%= render 'public/favorites/favorite', menu: @menu %>
   </div>
@@ -40,35 +23,58 @@
    <%= link_to "編集", edit_menu_path(@menu) %>
    <%= link_to "削除する", menu_path(@menu), method: :delete, data: {confirm: "本当に削除しますか？"} %>
   <% end %>
-</div>
-<p>材料</p>
-<div>
-  <% @menu.materials.each do |materials| %>
-   <%= materials.name %>
-   <%= materials.weigh %>
-  <% end %>
+ </div>
+
+  <div class="menu-show-materials">
+   <p class="menu-show-title">材料</p>
+    <% @menu.materials.each do |materials| %>
+    <ul class="materials-index">
+     <li class="material-show">
+      <div><%= materials.name %></div>
+      <div><%= materials.weigh %></div>
+     </li>
+    </ul>
+    <% end %>
+    <div>
+    </div>
+  </div>
 </div>
 <table>
- <p>作り方</p>
- <tr>
-  <th>順番</th>
- </tr>
+ <p class="menu-show-title">作り方</p>
  <% @cooks.each do |cooks| %>
  <tr>
   <td><%= cooks.cooks_count %></td>
   <td>
    <% if cooks.cook_image.attached? %>
-    <%= image_tag cooks.cook_image, size: "150x150" %>
+    <%= image_tag cooks.cook_image, size: "150x150", class: "menu-image" %>
    <% else %>
-    <%= image_tag 'no-image', size: "150x150" %>
+    <%= image_tag 'no-image', size: "150x150", class: "menu-image" %>
    <% end %>
   </td>
   <td><%= cooks.text %><br></td>
  </tr>
  <% end %>
 </table>
+<table>
+ <p>作成者</p>
+ <tr>
+  <td>
+   <%= link_to user_path(@menu.user) do %>
+    <% if @menu.user.profile_image.attached? %>
+     <%= image_tag @menu.user.profile_image, size: "100x100", class: "profile_image" %>
+    <% else %>
+     <%= image_tag 'no-image', size: "100x100", class: "profile_image" %>
+    <% end %>
+   <% end %>
+  </td>
+  <td><%= @menu.user.name %></td>
+ </tr>
+</table>
 <div id="comment_area">
- <%= render 'public/comments/menu_comments', menu: @menu %>
+ <p>コメント件数：<%= @menu.comments.count %></p><br>
+ <div class="comment-index">
+  <%= render 'public/comments/menu_comments', menu: @menu %>
+ </div>
 </div>
 <div class="new-comment">
  <%= render 'public/comments/form', menu: @menu, comment: @comment %>
