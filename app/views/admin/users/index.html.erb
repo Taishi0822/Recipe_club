@@ -16,7 +16,7 @@
             <% if users.profile_image.attached? %>
              <%= image_tag users.profile_image, size: "100x100", class: "profile_image" %>
             <% else%>
-             <%= image_tag 'no-image', size: "100x100", class: "profile_image" %>
+             <%= image_tag 'no-image.jpg', size: "100x100", class: "profile_image" %>
             <% end %>
         </td>
         <td class="user-name"><%= users.name %></td>

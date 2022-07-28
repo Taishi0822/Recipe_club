@@ -6,7 +6,7 @@
    <% if @menu.image.attached? %>
      <%= image_tag @menu.image, size: "300x300", class: "menu-image" %><br>
    <% else %>
-     <%= image_tag 'no-image', size: "300x300", class: "menu-image" %><br>
+     <%= image_tag 'no-image.jpg', size: "300x300", class: "menu-image" %><br>
    <% end %>
   <h3><%= @menu.name %></h3>
   <h4>メニュー説明</h4>
@@ -46,7 +46,7 @@
    <% if cooks.cook_image.attached? %>
     <%= image_tag cooks.cook_image, size: "150x150", class: "menu-image" %>
    <% else %>
-    <%= image_tag 'no-image', size: "150x150", class: "menu-image" %>
+    <%= image_tag 'no-image.jpg', size: "150x150", class: "menu-image" %>
    <% end %>
   </td>
   <td><%= cooks.text %><br></td>
@@ -61,7 +61,7 @@
     <% if @menu.user.profile_image.attached? %>
      <%= image_tag @menu.user.profile_image, size: "100x100", class: "profile_image" %>
     <% else %>
-     <%= image_tag 'no-image', size: "100x100", class: "profile_image" %>
+     <%= image_tag 'no-image.jpg', size: "100x100", class: "profile_image" %>
     <% end %>
    <% end %>
   </td>

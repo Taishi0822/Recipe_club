@@ -6,7 +6,7 @@
       <% if @menu.image.attached? %>
        <%= image_tag @menu.image, size: "150x150", class: "menu-image" %>
       <% else %>
-       <%= image_tag 'no-image', size: "150x150", class: "menu-image" %>
+       <%= image_tag 'no-image.jpg', size: "150x150", class: "menu-image" %>
       <% end %>
       <div class="menu-genre">
       <%= f.collection_select :genre_id, Genre.all, :id, :name %>

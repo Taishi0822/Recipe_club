@@ -7,7 +7,7 @@
         <% if @user.profile_image.attached? %>
           <%= image_tag @user.profile_image, size: "150x150", class: "profile_image" %>
         <% else %>
-          <%= image_tag 'no-image', size: "150x150", class: "profile_image" %>
+          <%= image_tag 'no-image.jpg', size: "150x150", class: "profile_image" %>
         <% end %>
       </th>
       <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>

@@ -7,7 +7,7 @@
         <% if comment.user.profile_image.attached? %>
          <%= image_tag comment.user.profile_image, size: "50x50", class: "profile_image" %>
         <% else %>
-         <%= image_tag 'no-image', size: "50x50", class: "profile_image" %>
+         <%= image_tag 'no-image.jpg', size: "50x50", class: "profile_image" %>
         <% end %>
       <% end %>
         <%= comment.user.name %>
