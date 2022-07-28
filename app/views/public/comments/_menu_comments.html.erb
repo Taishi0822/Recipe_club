@@ -1,20 +1,24 @@
 <% if menu.comments.present? %>
-  <p>コメント件数：<%= menu.comments.count %></p>
   <% menu.comments.each do |comment| %>
-    <%= link_to user_path(comment.user) do %>
-      <% if comment.user.profile_image.attached? %>
-       <%= image_tag comment.user.profile_image, size: "150x150" %>
-      <% else %>
-       <%= image_tag 'no-image', size: "150x150" %>
+    <div class="comment-box">
+      <%= comment.comment %>
+      <div class="comment-profile">
+        <%= link_to user_path(comment.user) do %>
+        <% if comment.user.profile_image.attached? %>
+         <%= image_tag comment.user.profile_image, size: "50x50", class: "profile_image" %>
+        <% else %>
+         <%= image_tag 'no-image', size: "50x50", class: "profile_image" %>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= comment.user.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-    <% if comment.user == current_user %>
-      <div class="comment-delete">
-        <%= link_to "削除", menu_comment_path(comment.menu, comment), method: :delete, data: {confirm: "本当に削除しますか？"},remote:true %>
+        <%= comment.user.name %>
+        <div class="comment-day"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
+        <% if comment.user == current_user %>
+          <div class="comment-delete">
+            <%= link_to "削除", menu_comment_path(comment.menu, comment), method: :delete, data: {confirm: "本当に削除しますか？"},remote:true %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   <% end %>
 <% else %>
   <p>コメントはまだありません</p>
