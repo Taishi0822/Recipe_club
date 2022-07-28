@@ -1,22 +1,40 @@
 <% if user_signed_in? %>
 <!--会員ログイン-->
- <%= link_to root_path do %>レシピクラブ<% end %>
- ようこそ<%= current_user.name %>さん
- <%= link_to menus_path do %>メニュー一覧<% end %>
- <%= link_to user_path(current_user.id) do %>マイページ<% end %>
- <%= link_to destroy_user_session_path, method: :delete do %>ログアウト<% end %>
+ <%= link_to root_path, class: 'logo' do %><div class="logo-image"></div><% end %>
+ <div class="link">
+  <%= link_to menus_path, class: 'header-link' do %>メニュー一覧<% end %>
+  <%= link_to user_path(current_user.id), class: 'header-link' do %>マイページ<% end %>
+  <%= link_to destroy_user_session_path,class: 'header-link', method: :delete do %>ログアウト<% end %>
+  <%= link_to user_path(current_user.id) do %>
+    <% if current_user.profile_image.attached? %>
+     <%= image_tag current_user.profile_image, size: "50x50", class: "header-profile-image" %>
+    <% else %>
+     <%= image_tag 'no-image', size: "50x50", class: "header-profile-image" %>
+    <% end %>
+   <% end %>
+  <%= render 'layouts/search' %>
+ </div>
 <% elsif admin_signed_in? %>
 <!--管理者ログイン-->
- <%= link_to root_path do %>ごはん日記<% end %>
- <%= link_to admin_menus_path do %>メニュー一覧<% end %>
- <%= link_to admin_users_path do %>会員一覧<% end %>
- <%= link_to admin_genres_path do %>ジャンル一覧<% end %>
- <%= link_to destroy_admin_session_path, method: :delete do %>ログアウト<% end %>
+ <%= link_to admin_root_path do %><div class="logo-image"></div><% end %>
+ <div class="link">
+  <%= link_to admin_menus_path, class: 'header-link' do %>メニュー一覧<% end %>
+  <%= link_to admin_users_path, class: 'header-link' do %>会員一覧<% end %>
+  <%= link_to admin_genres_path, class: 'header-link' do %>ジャンル一覧<% end %>
+  <%= link_to destroy_admin_session_path, class: 'header-link',method: :delete do %>ログアウト<% end %>
+  <%= render 'layouts/search' %>
+ </div>
 <% else %>
 <!--ログインしてない-->
- <%= link_to root_path do %>ごはん日記<% end %>
- <%= link_to menus_path do %>メニュー一覧<% end %>
- <%= link_to new_user_registration_path do %>新規登録<% end %>
- <%= link_to user_session_path do %>ログイン<% end %>
- <%= link_to new_admin_session_path do %>管理者ログイン<% end %>
+ <%= link_to root_path, class: 'logo-iamge' do %><div class="logo-image"></div><% end %>
+ <div class="link">
+
+  <%= link_to menus_path, class: 'header-link' do %>メニュー一覧<% end %>
+  <%= link_to new_user_registration_path, class: 'header-link' do %>新規登録<% end %>
+  <%= link_to user_session_path, class: 'header-link' do %>ログイン<% end %>
+  <%= link_to users_guest_sign_in_path, method: :post, class: 'header-link' do %>ゲストログイン<% end %>
+  <%= link_to new_admin_session_path, class: 'header-link' do %>管理者ログイン<% end %>
+ </div>
+
+
 <% end %>

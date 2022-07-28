@@ -1,0 +1,5 @@
+<% genres.each do |genre| %>
+ <%= link_to genre_search_path(genre.id) do %>
+  <%= genre.name %>
+ <% end %>
+<% end %>

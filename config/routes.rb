@@ -6,10 +6,14 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   scope module: :public do
     root to: 'homes#top'
     get "search" => "searches#search"
+    get "genre_search" => "menus#search"
     resources :users, only:[:show, :edit, :update] do
      member do
        get :favorites
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     get "search" => "searches#search"
+    get "genre_search" => "menus#search"
     resources :users, only:[:index, :show, :edit, :update] do
       member do
         get :favorites

@@ -1,26 +1,25 @@
-<h3>新規投稿</h3>
+<% if @menu.errors.any? %>
+  <%= @menu.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @menu.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<h3>メニュー新規投稿</h3>
 <%= form_with model: @menu, url: menus_path do |f| %>
- <table>
-        <tr>
-            <th>メニュー画像</th>
-            <th>メニュー名</th>
-            <th>ジャンル</th>
-        </tr>
-        <tr>
-            <td><%= f.file_field :image, placeholder: "メニュー画像", accept: "image/*" %></td>
-            <td><%= f.text_field :name %></td>
-            <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
-        </tr>
-        <tr>
-            <td>メニュー説明</td>
-            <td><%= f.text_area :explanation %></td>
-        </tr>
-        <tr>
-            <td><%= f.submit "投稿保存" %></td>
-        </tr>
- </table>
- <table>
-     <p>材料</p>
+  <div class="menu-top">
+    <div class="menu-new">
+        <%= f.file_field :image, placeholder: "メニュー画像", accept: "image/*" %>
+      <div class="menu-genre">
+        <%= f.collection_select :genre_id, Genre.all, :id, :name%>
+      </div>
+      <div class="col-7"><%= f.text_field :name, placeholder: 'メニュー名', class: 'form-control' %></div>
+      <div class="col-10"><%= f.text_area :explanation, placeholder: 'メニュー説明', class: 'form-control' %></div>
+      <%= f.submit "投稿保存", class: 'btn btn-primary' %>
+    </div>
+    <div class="menu-new">
+    <p>材料</p>
      <div class="menu-materials">
        <%= f.fields_for :materials do |materials_fields| %>
          <%= render "material_fields", f: materials_fields %>
@@ -34,10 +33,11 @@
         class: "btn btn-secondary btn-block",
         data: {
         association_insertion_node: '#detail-association-insertion-materials',
-        association_insertion_method: 'after'
+        association_insertion_method: 'before'
         }%>
      </div>
-
+    </div>
+  </div>
      <p>作り方</p>
      <div>
        <div class="menu-cooks">
@@ -53,9 +53,8 @@
         class: "btn btn-secondary btn-block",
         data: {
         association_insertion_node: '#detail-association-insertion-point',
-        association_insertion_method: 'after'
+        association_insertion_method: 'before'
         }%>
        </div>
      </div>
- </table>
 <% end %>

@@ -11,6 +11,9 @@ class Menu < ApplicationRecord
  has_many :checks, dependent: :destroy
  has_many :comments, dependent: :destroy
 
+ validates :name, presence: true
+ validates :explanation, presence: true
+
  # reject_ifは、入力フォームを追加しているもののすべてが空白の場合にリジェクトする
  # allow_destroyは、入力フォームでこのオブジェクトが削除された際に削除を許可する
  accepts_nested_attributes_for :materials, :cooks, reject_if: :all_blank, allow_destroy: true
@@ -27,17 +30,7 @@ class Menu < ApplicationRecord
 
  # 検索方法分岐
   def self.looks(search, word)
-    if search == "perfect_match"
-      @menu = Menu.where("name LIKE?","#{word}")
-    elsif search == "forward_match"
-      @menu = Menu.where("name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @menu = Menu.where("name LIKE?","%#{word}")
-    elsif search == "partial_match"
       @menu = Menu.where("name LIKE?","%#{word}%")
-    else
-      @menu = Menu.all
-    end
   end
 
 end
