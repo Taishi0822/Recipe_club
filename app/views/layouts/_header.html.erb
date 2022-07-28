@@ -9,7 +9,7 @@
     <% if current_user.profile_image.attached? %>
      <%= image_tag current_user.profile_image, size: "50x50", class: "header-profile-image" %>
     <% else %>
-     <%= image_tag 'no-image.jpeg', size: "50x50", class: "header-profile-image" %>
+     <%= image_tag 'no-image.jpg', size: "50x50", class: "header-profile-image" %>
     <% end %>
    <% end %>
   <%= render 'layouts/search' %>
