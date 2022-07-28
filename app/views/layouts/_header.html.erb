@@ -16,7 +16,7 @@
  </div>
 <% elsif admin_signed_in? %>
 <!--管理者ログイン-->
- <%= link_to root_path do %><div class="logo-image"></div><% end %>
+ <%= link_to admin_root_path do %><div class="logo-image"></div><% end %>
  <div class="link">
   <%= link_to admin_menus_path, class: 'header-link' do %>メニュー一覧<% end %>
   <%= link_to admin_users_path, class: 'header-link' do %>会員一覧<% end %>
@@ -32,8 +32,7 @@
   <%= link_to menus_path, class: 'header-link' do %>メニュー一覧<% end %>
   <%= link_to new_user_registration_path, class: 'header-link' do %>新規登録<% end %>
   <%= link_to user_session_path, class: 'header-link' do %>ログイン<% end %>
-  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
-  <%#= link_to users_guest_sign_in_path, method: :post , class: 'header-link' do %>ゲストログイン<%# end %>
+  <%= link_to users_guest_sign_in_path, method: :post, class: 'header-link' do %>ゲストログイン<% end %>
   <%= link_to new_admin_session_path, class: 'header-link' do %>管理者ログイン<% end %>
  </div>
 

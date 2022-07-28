@@ -1,16 +1,16 @@
 <div class="menu-show-top">
  <div class="menu-show">
-  <%= link_to genre_search_path(@genres.ids) do %>
-    <%= @menu.genre.name %><br>
-  <% end %>
-  <% if @menu.image.attached? %>
-   <%= image_tag @menu.image, size: "300x300", class: "menu-image" %><br>
-  <% else %>
-   <%= image_tag 'no-image', size: "300x300", class: "menu-image" %><br>
-  <% end %>
+   <%= link_to genre_search_path(@genres.ids) do %>
+     <%= @menu.genre.name %><br>
+   <% end %>
+   <% if @menu.image.attached? %>
+     <%= image_tag @menu.image, size: "300x300", class: "menu-image" %><br>
+   <% else %>
+     <%= image_tag 'no-image', size: "300x300", class: "menu-image" %><br>
+   <% end %>
   <h3><%= @menu.name %></h3>
   <h4>メニュー説明</h4>
-  <%= @menu.explanation %>
+   <%= @menu.explanation %>
 
   <div class="favorites_buttons_<%= @menu.id %>">
    <%= render 'public/favorites/favorite', menu: @menu %>

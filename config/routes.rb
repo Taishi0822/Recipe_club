@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     get "search" => "searches#search"
+    get "genre_search" => "menus#search"
     resources :users, only:[:index, :show, :edit, :update] do
       member do
         get :favorites

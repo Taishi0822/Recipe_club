@@ -1,3 +1,11 @@
+<% if @menu.errors.any? %>
+  <%= @menu.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @menu.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <h3>メニュー新規投稿</h3>
 <%= form_with model: @menu, url: menus_path do |f| %>
   <div class="menu-top">

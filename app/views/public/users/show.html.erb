@@ -1,27 +1,26 @@
-    <% if @user.profile_image.attached? %>
-     <%= image_tag @user.profile_image, size: "150x150", class: "profile_image" %><br>
-    <% else %>
-     <%= image_tag 'no-image', size: "150x150", class: "profile_image" %><br>
-    <% end %>
-    <p><%= @user.name %></p>
+<% if @user.profile_image.attached? %>
+ <%= image_tag @user.profile_image, size: "150x150", class: "profile_image" %><br>
+<% else %>
+  <%= image_tag 'no-image', size: "150x150", class: "profile_image" %><br>
+<% end %>
+<p><%= @user.name %></p>
 <%= link_to 'いいね一覧', favorites_user_path %>
 <%= link_to '作った一覧', checks_user_path %>
 <% if current_user.id == @user.id %>
   <%= link_to "新規投稿", new_menu_path %>
   <%= link_to '編集', edit_user_path(current_user.id) %>
 <% end %>
-<div class="menu-index">
+<div class="user-menu-index">
   <% @user.menus.each do |menu| %>
-    <div class="menu-box">
+    <div class="user-menu-box">
       <%= link_to menu_path(menu) do %>
-      <% if menu.image.attached? %>
-       <%= image_tag menu.image, size: "150x150", class: "menu-image" %><br>
-      <% else %>
-       <%= image_tag 'no-image', size: "150x150", class: "menu-image" %><br>
+        <% if menu.image.attached? %>
+         <%= image_tag menu.image, size: "150x150", class: "menu-image" %><br>
+        <% else %>
+         <%= image_tag 'no-image', size: "150x150", class: "menu-image" %><br>
+        <% end %>
       <% end %>
-    <% end %>
     <div class="menu-index-name"><%= menu.name %></div>
-
     </div>
-    <% end %>
+  <% end %>
 </div>

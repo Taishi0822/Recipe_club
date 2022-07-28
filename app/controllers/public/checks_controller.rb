@@ -1,4 +1,5 @@
 class Public::ChecksController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @menu = Menu.find(params[:menu_id])

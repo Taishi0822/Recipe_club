@@ -24,6 +24,11 @@ body{
 
 main{
   margin: 0 100px;
+  min-height: 585px;
+}
+
+p{
+  margin-bottom: 0;
 }
 
 /*ヘッダー*/
@@ -33,6 +38,7 @@ header{
   max-width: 100%;
   min-width: 1420px;
   padding: 10px;
+  margin-bottom: 20px;
 }
 
 .logo-image{
@@ -63,15 +69,23 @@ header{
 }
 
 input#file-upload-button{
-        display: block;
-        background-color: #228B22;
-        width: 180px;
-        height: 30px;
-        margin-top: 10px;
-        margin-left: 10px;
-        border-radius: 5px;
-        padding-top: 2px;
-        color: white;
-        text-decoration: none;
-        text-align: center;
+  display: block;
+  background-color: #228B22;
+  width: 180px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+/*footer*/
+.footer{
+  color: #93918f;
+  background-color: #C9E265;
+  text-align: center;
+  margin-top: 20px;
 }

@@ -1,5 +1,4 @@
-<h3 class="title-text">会員一覧</h3>
- <% @users.each do |users| %>
+<h3 class="main-title">会員一覧</h3>
   <table class="admin-users">
     <thead>
       <tr>
@@ -9,14 +8,15 @@
         <th class="user-header">ステータス</th>
       </tr>
     </thead>
-    <tbody>
+    <% @users.each do |users| %>
+    <tbody class="user-table">
       <tr class="user-table">
         <td class="user-image">
           <%= link_to admin_user_path(users) do %>
             <% if users.profile_image.attached? %>
-             <%= image_tag users.profile_image, size: "100x100" %>
+             <%= image_tag users.profile_image, size: "100x100", class: "profile_image" %>
             <% else%>
-             <%= image_tag 'no-image', size: "100x100" %>
+             <%= image_tag 'no-image', size: "100x100", class: "profile_image" %>
             <% end %>
         </td>
         <td class="user-name"><%= users.name %></td>
@@ -31,5 +31,5 @@
           <% end %>
       </tr>
     </tbody>
+    <% end %>
   </table>
- <% end %>

@@ -10,7 +10,7 @@
         <% end %>
       <% end %>
       <div class="menu-index-name"><h5><%= menus.name %></h5></div>
-      <div class="menu-index-explanation"><%= menus.explanation %></div>
+      <div class="menu-index-explanation"><%= menus.explanation.truncate(35) %></div>
     </div>
   <% end %>
 </div>

@@ -11,8 +11,15 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(public_user_params)
-    redirect_to user_path(current_user.id)
+    if @user != current_user
+      redirect_to user_path(current_user.id)
+    else
+      if @user.update(public_user_params)
+        redirect_to user_path(current_user.id)
+      else
+        render 'edit'
+      end
+    end
   end
 
   #退会機能
@@ -21,9 +28,16 @@ class Public::UsersController < ApplicationController
 
   def withrawal
     @user = User.find(params[:id])
-    @user.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
+    if @user != current_user
+      redirect_to root_path
+    else
+      if @user.update(is_deleted: true)
+        reset_session
+        redirect_to root_path
+      else
+        render 'edit'
+      end
+    end
   end
 
  #いいね一覧

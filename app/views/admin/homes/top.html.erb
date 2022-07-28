@@ -1,1 +1,22 @@
-top
+<%= render 'admin/menus/genre_search', genres: @genres %>
+<h3 class="main-title">ジャンル新着順</h3>
+<div class="top-genres">
+  <% @genres.each do |genres| %>
+    <h5><%= genres.name %></h5>
+    <div class="menu-index">
+      <% genres.menu_limit.each do |menus| %>
+      <div class="menu-box">
+        <%= link_to admin_menu_path(menus) do %>
+          <% if menus.image.attached? %>
+            <%= image_tag menus.image, size: "250x250", class: "menu-image" %><br>
+          <% else %>
+            <%= image_tag 'no-image', size: "250x250", class: "menu-image" %><br>
+          <% end %>
+        <% end %>
+        <div class="menu-index-name"><h5><%= menus.name %></h5></div>
+        <div class="menu-index-explanation"><%= menus.explanation.truncate(35) %></div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

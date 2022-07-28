@@ -36,10 +36,14 @@ class Public::MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    if @menu.update(menus_params)
+    if @menu.user != current_user
       redirect_to menu_path(@menu)
     else
-      render 'edit'
+      if @menu.update(menus_params)
+        redirect_to menu_path(@menu)
+      else
+        render 'edit'
+      end
     end
   end
 

@@ -29,12 +29,12 @@ input.sign{
   margin: 10px 0;
 }
 
-input.sign-up-submit{
+input.user-submit{
   width: 300px;
   margin: 20px 0;
 }
 
-.sign-up-submit{
+.user-submit{
   margin: 0 auto;
 }
 
@@ -43,11 +43,36 @@ input.sign-up-submit{
   border-radius:50%;
 }
 
+.user-menu-index{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.user-menu-box{
+  width: 150px;
+  margin: 0 30px;
+  margin-top: 20px;
+}
+
+//会員編集
+.edit-user{
+  text-align: center;
+}
+
+.edit-user-box{
+  display: flex;
+}
+
+//退会確認ページ
+.unsubscribe{
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 //管理者
 ///会員一覧
-//バックkara-
-#C9E265
-
 .title-text{
   text-align: center;
 }
@@ -67,5 +92,6 @@ input.sign-up-submit{
 }
 
 .user-image{
+  padding-top: 15px;
   max-width: 100px;
 }

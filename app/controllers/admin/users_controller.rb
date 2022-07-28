@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @users = User.all
@@ -14,8 +15,11 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(admin_user_params)
-    redirect_to admin_user_path(@user)
+    if @user.update(admin_user_params)
+      redirect_to admin_user_path(@user)
+    else
+      render 'edit'
+    end
   end
 
   #退会機能
@@ -25,8 +29,11 @@ class Admin::UsersController < ApplicationController
 
   def withrawal
     @user = User.find(params[:id])
-    @user.update(is_deleted: true)
-    redirect_to admin_root_path
+    if @user.update(is_deleted: true)
+      redirect_to admin_root_path
+    else
+      render 'edit'
+    end
   end
 
    #いいね一覧
