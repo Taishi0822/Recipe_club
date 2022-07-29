@@ -54,6 +54,8 @@ class Public::UsersController < ApplicationController
     @checks_menu = Menu.find(checks)
   end
 
+
+
   private
 
   def public_user_params

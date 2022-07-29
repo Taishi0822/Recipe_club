@@ -1,4 +1,6 @@
 class Genre < ApplicationRecord
+
+  validates :name, presence: true
   # アソシエーション
   has_many :menus, ->{order('created_at DESC')}, dependent: :destroy
 
